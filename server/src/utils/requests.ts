@@ -89,7 +89,7 @@ export const fetchHistoricalStockData = async (
 					"https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" +
 						symbol +
 						"&interval=15min&extended_hours=true&outputsize=full&apikey=" +
-						process.env.STOTRA_ALPHAVANTAGE_API,
+						process.env.StockTracker_ALPHAVANTAGE_API,
 				);
 				const alphaData = res.data["Time Series (15min)"];
 

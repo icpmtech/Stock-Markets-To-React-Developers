@@ -27,7 +27,7 @@ export default function Dashboard() {
 					) : (
 						<>
 							<Heading as="h1" size="xl">
-								Stotra
+								StockTracker
 							</Heading>
 							<Text fontSize="lg">
 								<Link as={RouterLink} to="/signup">

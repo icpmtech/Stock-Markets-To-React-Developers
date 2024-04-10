@@ -50,7 +50,7 @@ function swaggerDocs(app: Express, port: number) {
 			},
 		},
 		servers: [
-			{ url: process.env.STOTRA_SERVER_URL || `http://0.0.0.0:${port}` },
+			{ url: process.env.StockTracker_SERVER_URL || `http://0.0.0.0:${port}` },
 		],
 	};
 

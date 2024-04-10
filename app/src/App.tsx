@@ -65,11 +65,11 @@ function App() {
 			<Box textAlign="center" py="10">
 				<Text fontSize="sm" color="gray.500">
 					Built by{" "}
-					<Link href="https://spike.codes" fontWeight="bold">
-						Spike
+					<Link href="https://cantinhodenet" fontWeight="bold">
+						Academy Cantinhode.net
 					</Link>{" "}
 					on{" "}
-					<Link href="https://github.com/spikecodes/stotra" fontWeight="bold">
+					<Link href="https://github.com/spikecodes/StockTracker" fontWeight="bold">
 						GitHub
 					</Link>
 				</Text>

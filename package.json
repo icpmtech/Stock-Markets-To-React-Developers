@@ -1,5 +1,5 @@
 {
-	"name": "stotra",
+	"name": "StockTracker",
 	"version": "1.0.0",
 	"description": "Multiplayer stock trading simulator allowing real-time virtual trading of stocks, currencies, and cryptocurrencies",
 	"prettier": {

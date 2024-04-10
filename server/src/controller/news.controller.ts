@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const { SearchApi } = require("financial-news-api");
-const searchApi = SearchApi(process.env.STOTRA_NEWSFILTER_API);
+const searchApi = SearchApi(process.env.StockTracker_NEWSFILTER_API);
 
 // Cache the results for 15 minutes
 import NodeCache from "node-cache";
@@ -26,8 +26,8 @@ const getNews = async (req: Request, res: Response) => {
 
 	// If no API key for NewsFilter is provided, use Yahoo Finance API
 	if (
-		process.env.STOTRA_NEWSFILTER_API === undefined ||
-		process.env.STOTRA_NEWSFILTER_API === ""
+		process.env.StockTracker_NEWSFILTER_API === undefined ||
+		process.env.StockTracker_NEWSFILTER_API === ""
 	) {
 		console.warn("No NewsFilter API key provided. Using Yahoo Finance API.");
 		yahooNews(symbol)

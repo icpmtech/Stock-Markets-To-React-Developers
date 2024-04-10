@@ -54,8 +54,8 @@ export default function Navbar() {
 			{/* Left Side */}
 			<Flex gap={7}>
 				<Text as={Link} to="/" display="flex" alignItems="center" gap="1">
-					<Image src="/logo.svg" alt="Stotra Logo" boxSize="6" />
-					<Text fontWeight="bold">Stotra</Text>
+					<Image src="/logo.svg" alt="StockTracker Logo" boxSize="6" />
+					<Text fontWeight="bold">StockTracker</Text>
 				</Text>
 				<NavLink
 					style={({ isActive }) => {
@@ -156,7 +156,7 @@ export default function Navbar() {
 							<DrawerCloseButton />
 							<DrawerHeader>
 								<Text as={Link} to="/">
-									<Text fontWeight="bold">Stotra</Text>
+									<Text fontWeight="bold">StockTracker</Text>
 								</Text>
 							</DrawerHeader>
 

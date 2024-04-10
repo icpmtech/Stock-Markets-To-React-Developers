@@ -3,19 +3,19 @@
     <img src="./assets/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h1 align="center">Stotra</h3>
+<h1 align="center">StockTracker</h3>
 
 <p align="center">
     Multiplayer stock trading simulator built with React + MERN 📈
     <br />
-    <a href="https://stotra.spike.codes"><strong>View the demo »</strong></a>
+    <a href="https://StockTracker.spike.codes"><strong>View the demo »</strong></a>
     <br />
     <br />
-    <a href="https://stotra.spike.codes/api/docs/">Read API Docs</a>
+    <a href="https://StockTracker.spike.codes/api/docs/">Read API Docs</a>
     ·
-    <a href="https://github.com/spikecodes/stotra/issues">Report Bug</a>
+    <a href="https://github.com/spikecodes/StockTracker/issues">Report Bug</a>
     ·
-    <a href="https://github.com/spikecodes/stotra/issues">Request Feature</a>
+    <a href="https://github.com/spikecodes/StockTracker/issues">Request Feature</a>
   </p>
 </div>
 
@@ -27,9 +27,9 @@
 | ---------------------------- | ------------------------------- | ---------------------------------------- |
 | ![Login](./assets/login.png) | ![Sign up](./assets/signup.png) | ![Leaderboard](./assets/leaderboard.png) |
 
-Stotra is a multiplayer **STO**ck **TRA**ading simulator that allows users to engage in real-time virtual trading of stocks, currencies, and cryptocurrencies. With Stotra, users can practice trading without risking real money, making it an ideal platform for beginners to learn the ropes of trading. The project is powered by AWS, utilizing Amplify for the React frontend and Elastic Cloud Compute for the Express API.
+StockTracker is a multiplayer **STO**ck **TRA**ading simulator that allows users to engage in real-time virtual trading of stocks, currencies, and cryptocurrencies. With StockTracker, users can practice trading without risking real money, making it an ideal platform for beginners to learn the ropes of trading. The project is powered by AWS, utilizing Amplify for the React frontend and Elastic Cloud Compute for the Express API.
 
-I built Stotra in 70 hours split across 3 weeks of design, development, and deployment. I set development goals and stayed on top of them with Trello and tracked time spent on each portion with Toggl Track.
+I built StockTracker in 70 hours split across 3 weeks of design, development, and deployment. I set development goals and stayed on top of them with Trello and tracked time spent on each portion with Toggl Track.
 
 ## Features ✨
 
@@ -48,7 +48,7 @@ The accent color defaults to Chakra's "Cyan 500" (`#00B5D8`), which can be chang
 
 ## Security 🛡️
 
-Stotra utilizes a robust and custom-built authentication system designed to ensure the security of user data and access to its services. Developed using TypeScript, the system incorporates features for user sign-up, login, and verification. To authenticate users, Stotra employs JSON Web Tokens (JWT), issuing a JWT to users upon successful login, which is then used for identity and permission verification in subsequent requests. As an added layer of security, Stotra integrates [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/), a gatekeeping service that prevents unauthorized access to the platform.
+StockTracker utilizes a robust and custom-built authentication system designed to ensure the security of user data and access to its services. Developed using TypeScript, the system incorporates features for user sign-up, login, and verification. To authenticate users, StockTracker employs JSON Web Tokens (JWT), issuing a JWT to users upon successful login, which is then used for identity and permission verification in subsequent requests. As an added layer of security, StockTracker integrates [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/), a gatekeeping service that prevents unauthorized access to the platform.
 
 ### Known Limitations
 
@@ -58,7 +58,7 @@ Stotra utilizes a robust and custom-built authentication system designed to ensu
 
 ## Architecture 🏗️
 
-Stotra uses a microservices architecture, with separate services for the frontend and backend. The two services are stored in separate directories within this monorepo and are meant to be run simultaneously on different ports of the host. The frontend is built with React which interfaces with the Node.js/Express backend over a Restful API. The backend sends to and reads from the MongoDB database (run on MongoDB Atlas for the demo version). The project is hosted on AWS, with Amplify for the frontend and Elastic Cloud Compute for the backend.
+StockTracker uses a microservices architecture, with separate services for the frontend and backend. The two services are stored in separate directories within this monorepo and are meant to be run simultaneously on different ports of the host. The frontend is built with React which interfaces with the Node.js/Express backend over a Restful API. The backend sends to and reads from the MongoDB database (run on MongoDB Atlas for the demo version). The project is hosted on AWS, with Amplify for the frontend and Elastic Cloud Compute for the backend.
 
 ![Architecture Diagram](./assets/architecture.png)
 
@@ -77,8 +77,8 @@ Stotra uses a microservices architecture, with separate services for the fronten
 1. Clone the repo
 
 ```sh
-$ git clone https://github.com/spikecodes/stotra.git
-$ cd stotra
+$ git clone https://github.com/spikecodes/StockTracker.git
+$ cd StockTracker
 ```
 
 2. Install NPM packages for both the frontend and backend
@@ -93,14 +93,14 @@ $ npm install
 3. Create a `.env` file in the `server` directory and add the following environment variables:
 
 ```py
-STOTRA_MONGODB_USERNAME=<username>
-STOTRA_MONGODB_PASSWORD=<pass>
-STOTRA_MONGODB_CLUSTER=<example: cluster0.example.mongodb.net>
-STOTRA_JWT_SECRET=<random string of characters>
-STOTRA_TURNSTILE_SECRET=<api key for turnstile>
+StockTracker_MONGODB_USERNAME=<username>
+StockTracker_MONGODB_PASSWORD=<pass>
+StockTracker_MONGODB_CLUSTER=<example: cluster0.example.mongodb.net>
+StockTracker_JWT_SECRET=<random string of characters>
+StockTracker_TURNSTILE_SECRET=<api key for turnstile>
 # Optional: (for real-time news and stock data)
-STOTRA_NEWSFILTER_API=<api key for news descriptions>
-STOTRA_ALPHAVANTAGE_API=<api key for real-time stock data>
+StockTracker_NEWSFILTER_API=<api key for news descriptions>
+StockTracker_ALPHAVANTAGE_API=<api key for real-time stock data>
 ```
 
 4. Run the frontend and backend in separate terminals
@@ -109,7 +109,7 @@ STOTRA_ALPHAVANTAGE_API=<api key for real-time stock data>
 $ cd app
 $ npm run dev
 
-> stotra-frontend@0.0.0 dev
+> StockTracker-frontend@0.0.0 dev
 > vite
 
   VITE v4.4.9  ready in 503 ms
@@ -123,7 +123,7 @@ $ npm run dev
 $ cd server
 $ npm run dev
 
-> stotra-backend@0.0.0 dev
+> StockTracker-backend@0.0.0 dev
 > ts-node-dev --respawn --pretty --transpile-only ./src/index.ts
 
 [INFO] 17:21:04 ts-node-dev ver. 2.0.0 (using ts-node ver. 10.9.1, typescript ver. 5.1.6)
@@ -154,4 +154,4 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2023 [Spike](https://github.com/spikecodes).
 
-This project is [MIT License](https://github.com/spikecodes/stotra/blob/main/LICENSE) licensed.
+This project is [MIT License](https://github.com/spikecodes/StockTracker/blob/main/LICENSE) licensed.
