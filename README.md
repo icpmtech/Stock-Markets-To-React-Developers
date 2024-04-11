@@ -1,3 +1,5 @@
+![](assets/20240411_123746_Stok_markets.png)
+
 # Contributing to the Stock Tracker App
 
 Welcome to the Stock Tracker App project! This application is designed to provide React developers with real-time financial data, market trends, and news aggregation to support informed investment decisions. Whether you're new to financial applications or an experienced developer looking to contribute to an open-source project, your contributions are valuable to us.
@@ -31,13 +33,11 @@ Before you contribute to the Stock Tracker App, ensure you have the following in
    git clone https://github.com/icpmtech/Stock-Markets-To-React-Developers.git
    cd Stock-Markets-To-React-Developers
    ```
-
 2. **Switch to the StockTrackerApp Branch**
 
    ```
    git checkout StockTrackerApp
    ```
-
 3. **Install Dependencies**
 
    Navigate to the project directory and install the necessary npm packages:
@@ -45,11 +45,9 @@ Before you contribute to the Stock Tracker App, ensure you have the following in
    ```
    npm install
    ```
-
 4. **Environment Configuration**
 
    Set up your `.env` file according to the `.env.example` provided, ensuring you have valid API keys for Alpha Vantage and any other integrated services.
-
 5. **Start the Development Server**
 
    ```
