@@ -13,16 +13,24 @@ import {
 	CardFooter,
 	Tag,
 	HStack,
+	Stat,
+	Container,
+	Box,
+	StatArrow,
+	StatGroup,
+	StatHelpText,
+	StatLabel,
+	StatNumber,
 } from "@chakra-ui/react";
 import axios from "axios";
 
-interface NewsItem {
-	title: string;
-	description: string;
-	publishedAt: string;
-	symbols: string[];
-	source: string;
-	sourceUrl: string;
+interface MarketItem {
+	currentPrice: string;
+	priceHint: string;
+	maxAge: string;
+	symbol: string;
+
+	
 }
 
 function timeSince(date: string) {
@@ -49,14 +57,15 @@ function timeSince(date: string) {
 
 function MarketOverview(props: { symbol: string }) {
 	const [isLoading, setIsLoading] = useState(true);
-	const [news, setNews] = useState<NewsItem[]>([]);
+	const [news, setNews] = useState<MarketItem>();
 
 	let accentColor =
 		useTheme()["components"]["Link"]["baseStyle"]["color"].split(".")[0];
 
 	useEffect(() => {
 		axios.get("/api/markets/" + (props.symbol || "")).then((res) => {
-			setNews(res.data.slice(0, 9));
+			debugger;
+			setNews(res.data);
 			setIsLoading(false);
 		});
 	}, []);
@@ -68,84 +77,35 @@ function MarketOverview(props: { symbol: string }) {
 			</Stack>
 		);
 	}
-
+	const markets = [
+		{ name: 'DAX', value: '17,954.48', change: '-0.79%', difference: '-142.82' },
+		{ name: 'FTSE 100', value: '7,923.80', change: '-0.47%', difference: '-37.41' },
+		{ name: 'CAC 40', value: '8,023.74', change: '-0.27%', difference: '-21.64' },
+		{ name: 'IBEX 35', value: '10,649.80', change: '-1.16%', difference: '-125.20' },
+		{ name: 'STOXX 50', value: '4,966.68', change: '-0.68%', difference: '-34.15' }
+	  ];
 	return (
 		<>
-			<SimpleGrid
-				spacing={1}
-				templateColumns="repeat(auto-fill, minmax(250px, 1fr))"
-				gap={5}
-			>
-				{news.map((item) => (
-					<Card maxW="sm" h="100%" key={item.title}>
-						<CardHeader fontSize="sm" pb={2} display="flex" gap="2">
-							<Text whiteSpace="nowrap">{timeSince(item.publishedAt)}</Text>
-							<Text
-								color={accentColor + ".500"}
-								fontWeight="500"
-								textOverflow="ellipsis"
-								overflow="hidden"
-								whiteSpace="nowrap"
-							>
-								{item.source}
-							</Text>
-						</CardHeader>
-						<Link
-							href={item.sourceUrl}
-							color="inherit"
-							isExternal
-							_hover={{ textDecoration: "none" }}
-						>
-							<CardBody pt={0} h="100%">
-								<Stack>
-									<Heading
-										size="sm"
-										textOverflow="ellipsis"
-										display="-webkit-box"
-										overflow="hidden"
-										css="-webkit-line-clamp: 3; -webkit-box-orient: vertical;"
-									>
-										{item.title}
-									</Heading>
-									<Text
-										size="sm"
-										textOverflow="ellipsis"
-										display="-webkit-box"
-										overflow="hidden"
-										css="-webkit-line-clamp: 6; -webkit-box-orient: vertical;"
-									>
-										{item.description}
-									</Text>
-								</Stack>
-							</CardBody>
-						</Link>
-						{item.symbols.length > 0 && (
-							<>
-								{/* <Divider /> */}
-								<CardFooter as={Stack}>
-									<Text fontSize="sm" fontWeight="500" mr="2">
-										Symbols:
-									</Text>
-									<br />
-									<HStack flexWrap="wrap">
-										{item.symbols.map((symbol) => (
-											<Tag
-												as={Link}
-												href={"/stocks/" + symbol}
-												key={symbol}
-												colorScheme={accentColor}
-												size="sm"
-											>
-												{symbol}
-											</Tag>
-										))}
-									</HStack>
-								</CardFooter>
-							</>
-						)}
-					</Card>
-				))}
-			</SimpleGrid>
+		  <Container maxW="container.xl">
+   
+      <StatGroup>
+        {markets.map((market, index) => (
+			 <Card>
+          <Box key={index} p={4} borderWidth="1px" borderRadius="lg">
+            <Stat>
+              <StatLabel>{market.name}</StatLabel>
+              <StatNumber>{market.value}</StatNumber>
+              <StatHelpText>
+                <StatArrow type={market.change.includes('-') ? 'decrease' : 'increase'} />
+                {market.change} ({market.difference})
+              </StatHelpText>
+            </Stat>
+			
+          </Box>
+		  </Card>
+        ))}
+      </StatGroup>
+    </Container>
 		</>
 	);
 }
