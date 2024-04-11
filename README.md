@@ -1,4 +1,4 @@
-# Chapter: Contributing to the Stock Tracker App
+# Contributing to the Stock Tracker App
 
 Welcome to the Stock Tracker App project! This application is designed to provide React developers with real-time financial data, market trends, and news aggregation to support informed investment decisions. Whether you're new to financial applications or an experienced developer looking to contribute to an open-source project, your contributions are valuable to us.
 
