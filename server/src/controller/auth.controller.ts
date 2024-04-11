@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-const jwtSecret = process.env.StockTracker_JWT_SECRET;
+const jwtSecret = '0x4AAAAAAAW4WF0i43s7LPIC-6FQZF-C4WU';
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { Request, Response } from "express";
@@ -102,7 +102,7 @@ const validateTurnstile = async (token: string): Promise<any> => {
 	/*
 	#swagger.tags = ['Authentication']
 	*/
-	let secret = process.env.StockTracker_TURNSTILE_SECRET;
+	let secret = '0x4AAAAAAAW4WF0i43s7LPIC-6FQZF-C4WU';
 
 	if (!secret) {
 		throw new Error("Turnstile secret not found");
@@ -110,7 +110,7 @@ const validateTurnstile = async (token: string): Promise<any> => {
 
 	let res = await axios
 		.post("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-			secret: process.env.StockTracker_TURNSTILE_SECRET,
+			secret: '0x4AAAAAAAW4WF0i43s7LPIC-6FQZF-C4WU',
 			response: token,
 		})
 		.catch((err) => {

@@ -24,7 +24,7 @@ const UserSchema = require("./models/user.model");
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(express.json());
-
+app.enable('trust proxy');
 // Ratelimiting
 const apiLimiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes

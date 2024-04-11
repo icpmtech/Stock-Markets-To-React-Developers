@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 
 import dotenv from "dotenv";
 dotenv.config();
-const jwtSecret = process.env.StockTracker_JWT_SECRET;
+const jwtSecret = '0x4AAAAAAAW4WF0i43s7LPIC-6FQZF-C4WU';
 
 import jwt, { JwtPayload } from "jsonwebtoken";
 
