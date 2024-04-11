@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Stock Trading Simulator API",
+    "title": "Stock Tracker API",
     "description": "A REST API for the Stock Trading Simulator",
     "version": "0.0.0"
   },
@@ -552,6 +552,22 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api/markets": {
+      "get": {
+        "tags": [
+          "Markets"
+        ],
+        "description": "",
         "responses": {
           "200": {
             "description": "OK"

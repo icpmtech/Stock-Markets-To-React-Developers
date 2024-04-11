@@ -11,6 +11,7 @@ import PortfolioPreview from "../components/PortfolioPreview";
 import React from "react";
 import PositionsList from "../components/PositionsList";
 import Newsfeed from "../components/Newsfeed";
+import MarketOverview from "../components/Newsfeed";
 import Watchlist from "../components/Watchlist";
 import tokens from "../services/tokens.service";
 import { Link as RouterLink } from "react-router-dom";
@@ -22,8 +23,10 @@ export default function Dashboard() {
 		<Box className="Dashboard">
 			<Flex direction={{ base: "column", md: "row" }} gap={5}>
 				<Box flex="0.75">
+			
 					{tokens.isAuthenticated() ? (
 						<PortfolioPreview />
+						
 					) : (
 						<>
 							<Heading as="h1" size="xl">
@@ -43,6 +46,11 @@ export default function Dashboard() {
 					)}
 					{!isOnMobile && (
 						<>
+							
+							<Spacer height={10} />
+							<Heading size="md">Stock Markets Overview</Heading>
+							<Spacer height={2} />
+							<MarketOverview symbol={""} />
 							<Spacer height={10} />
 							<Heading size="md">Stock Market News</Heading>
 							<Spacer height={2} />

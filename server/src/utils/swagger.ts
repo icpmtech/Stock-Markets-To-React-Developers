@@ -10,7 +10,7 @@ dotenv.config();
 // 	definition: {
 // 		openapi: "3.0.0",
 // 		info: {
-// 			title: "Stock Trading Simulator API",
+// 			title: "Stock Tracker API",
 // 			version: version,
 // 			description: "A REST API for the Stock Trading Simulator",
 // 		},
@@ -37,7 +37,7 @@ const endpointsFiles = ["./routes"];
 function swaggerDocs(app: Express, port: number) {
 	const doc = {
 		info: {
-			title: "Stock Trading Simulator API",
+			title: "Stock Tracker API",
 			description: "A REST API for the Stock Trading Simulator",
 			version,
 		},

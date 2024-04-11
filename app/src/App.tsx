@@ -69,7 +69,7 @@ function App() {
 						Academy Cantinhode.net
 					</Link>{" "}
 					on{" "}
-					<Link href="https://github.com/spikecodes/StockTracker" fontWeight="bold">
+					<Link href="https://github.com/icpmtech/Stock-Markets-To-React-Developers/tree/StockTrackerApp" fontWeight="bold">
 						GitHub
 					</Link>
 				</Text>

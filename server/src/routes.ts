@@ -5,6 +5,7 @@ import authController from "./controller/auth.controller";
 import userController from "./controller/user.controller";
 import stocksController from "./controller/stocks.controller";
 import newsController from "./controller/news.controller";
+import marketsController from "./controller/markets.controller";
 import leaderboardController from "./controller/leaderboard.controller";
 
 // Auth routes
@@ -62,7 +63,8 @@ router.post(
 	[authJwt.verifyToken],
 	stocksController.sellStock,
 );
-
+// Markets routes
+router.get("/api/markets", marketsController.getNews);
 // News routes
 router.get("/api/news", newsController.getNews);
 router.get("/api/news/:symbol", newsController.getNews);
