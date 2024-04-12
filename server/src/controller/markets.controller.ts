@@ -13,53 +13,50 @@ import NodeCache from "node-cache";
 import { QuoteSummaryOptions } from "yahoo-finance2/dist/esm/src/modules/quoteSummary";
 const cache = new NodeCache({ stdTTL: 15 * 60 });
 
-const getNews = async (req: Request, res: Response) => {
+const getMarketsEurope = async (req: Request, res: Response) => {
 	/* 
 	#swagger.tags = ['News']
 	*/
-	var symbol = req.params.symbol || "DAX";
+	var symbols = req.params.symbols || "DAX,%5EFCHI,%5EIBEX,PSI20.LS";
+	if (!symbols) {
+        return res.status(400).send({ error: "No symbols provided" });
+    }
+	const symbolList = symbols.split(',');
 	
-
-	
-		yahooNews(symbol)
-			.then((news) => {
-				res.status(200).json(news);
-			})
-			.catch((err: any) => {
-				console.log(err);
-				res.status(500).json(err);
-			});
-		return;
+	try {
+        const results = await fetchFinancialDataForSymbols(symbolList);
+        res.status(200).json(results);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to fetch data for symbols" });
+    }
 
 };
-//https://github.com/gadicc/node-yahoo-finance2/blob/86becb79607aa4ecefe2184b409777eccf6d3e40/docs/modules/quoteSummary.md
-function yahooNews(symbol: string): Promise<any> {
-    const options: QuoteSummaryOptions = {
+
+async function fetchFinancialDataForSymbols(symbols: string[]): Promise<any[]> {
+    const fetchPromises = symbols.map(symbol => {
+        const cachedData = cache.get(symbol);
+        if (cachedData) {
+            return Promise.resolve(cachedData);
+        }
+        return fetchFinancialData(symbol);
+    });
+
+    return Promise.all(fetchPromises);
+}
+
+async function fetchFinancialData(symbol: string): Promise<any> {
+	const options: QuoteSummaryOptions = {
         modules: ['price', 'summaryDetail'] // Specify the modules you want to fetch
     };
+    try {
+        const data = await yahooFinance.quoteSummary(symbol, options);
+        cache.set(symbol, data);
+        return data;
+    } catch (error) {
+        console.error(`Failed to fetch data for ${symbol}: ${error}`);
+        throw error;
+    }
+}
 
-    // Default to "OCDO.L" if symbol is empty
-    symbol = symbol || "DAX";
-
-    return yahooFinance.quoteSummary(symbol, options)
-        .then((response: any) => {
-            // Extract price and summaryDetail from the response
-            const { price, summaryDetail } = response;
-            const financialData = {
-                symbol: symbol,
-                currentPrice: price.regularMarketPrice,
-                priceHint: summaryDetail.priceHint,
-                maxAge: summaryDetail.maxAge
-            };
-
-            // Cache the fetched data
-            cache.set(symbol + "-financialData", financialData);
-            return financialData;
-        })
-        .catch((err: any) => {
-            console.error(err);
-            throw new Error(`Failed to fetch financial data: ${err}`);
-        });
-	}
-
-export default { getNews };
+export default { getMarketsEurope };

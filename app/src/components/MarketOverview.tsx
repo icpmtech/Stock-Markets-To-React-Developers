@@ -23,15 +23,9 @@ import {
 	StatNumber,
 } from "@chakra-ui/react";
 import axios from "axios";
+import { MarketEurope } from "./MarketEurope";
+import MarketCard from "./MarketCard";
 
-interface MarketItem {
-	currentPrice: string;
-	priceHint: string;
-	maxAge: string;
-	symbol: string;
-
-	
-}
 
 function timeSince(date: string) {
 	const now = Date.now();
@@ -54,18 +48,21 @@ function timeSince(date: string) {
 
 	return "Just now";
 }
-
-function MarketOverview(props: { symbol: string }) {
+interface MarketCardProps {
+  MarketEurope: MarketEurope;
+}
+function MarketOverview(props: { symbols: string }) {
 	const [isLoading, setIsLoading] = useState(true);
-	const [news, setNews] = useState<MarketItem>();
-
+	const [marketsEurope, setSotckMarketsEurope] = useState<MarketEurope[]>([]);
+  const symbols = props.symbols || "DAX,^FCHI,^IBEX,PSI20.LS";
+  const url = `/api/markets?symbols=${symbols}`;
 	let accentColor =
 		useTheme()["components"]["Link"]["baseStyle"]["color"].split(".")[0];
 
 	useEffect(() => {
-		axios.get("/api/markets/" + (props.symbol || "")).then((res) => {
+		axios.get(url).then((res) => {
 			debugger;
-			setNews(res.data);
+			setSotckMarketsEurope(res.data);
 			setIsLoading(false);
 		});
 	}, []);
@@ -77,34 +74,15 @@ function MarketOverview(props: { symbol: string }) {
 			</Stack>
 		);
 	}
-	const markets = [
-		{ name: 'DAX', value: '17,954.48', change: '-0.79%', difference: '-142.82' },
-		{ name: 'FTSE 100', value: '7,923.80', change: '-0.47%', difference: '-37.41' },
-		{ name: 'CAC 40', value: '8,023.74', change: '-0.27%', difference: '-21.64' },
-		{ name: 'IBEX 35', value: '10,649.80', change: '-1.16%', difference: '-125.20' },
-		{ name: 'STOXX 50', value: '4,966.68', change: '-0.68%', difference: '-34.15' }
-	  ];
+
 	return (
 		<>
-		  <Container maxW="container.xl">
-   
-      <StatGroup>
-        {markets.map((market, index) => (
-			 <Card>
-          <Box key={index} p={4} borderWidth="1px" borderRadius="lg">
-            <Stat>
-              <StatLabel>{market.name}</StatLabel>
-              <StatNumber>{market.value}</StatNumber>
-              <StatHelpText>
-                <StatArrow type={market.change.includes('-') ? 'decrease' : 'increase'} />
-                {market.change} ({market.difference})
-              </StatHelpText>
-            </Stat>
-			
-          </Box>
-		  </Card>
+		   <Container maxW="container.xl">
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={5}>
+        {marketsEurope.map((market, index) => (
+          <MarketCard key={index} MarketEurope={market} />
         ))}
-      </StatGroup>
+      </SimpleGrid>
     </Container>
 		</>
 	);

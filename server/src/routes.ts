@@ -64,7 +64,8 @@ router.post(
 	stocksController.sellStock,
 );
 // Markets routes
-router.get("/api/markets", marketsController.getNews);
+router.get("/api/markets", marketsController.getMarketsEurope);
+router.get("/api/markets/:symbols", marketsController.getMarketsEurope);
 // News routes
 router.get("/api/news", newsController.getNews);
 router.get("/api/news/:symbol", newsController.getNews);

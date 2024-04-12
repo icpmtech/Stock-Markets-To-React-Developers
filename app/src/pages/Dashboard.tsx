@@ -6,6 +6,7 @@ import {
 	Text,
 	useBreakpointValue,
 	Link,
+	Card,
 } from "@chakra-ui/react";
 import PortfolioPreview from "../components/PortfolioPreview";
 import React from "react";
@@ -15,6 +16,7 @@ import MarketOverview from "../components/MarketOverview";
 import Watchlist from "../components/Watchlist";
 import tokens from "../services/tokens.service";
 import { Link as RouterLink } from "react-router-dom";
+import MarketsTable from "../components/MarketsTable";
 
 export default function Dashboard() {
 	const isOnMobile = useBreakpointValue({ base: true, md: false });
@@ -29,6 +31,7 @@ export default function Dashboard() {
 						
 					) : (
 						<>
+						<Box>
 							<Heading as="h1" size="xl">
 								StockTracker
 							</Heading>
@@ -42,6 +45,7 @@ export default function Dashboard() {
 								</Link>{" "}
 								to get started!
 							</Text>
+							</Box>
 						</>
 					)}
 					{!isOnMobile && (
@@ -49,7 +53,8 @@ export default function Dashboard() {
 							<Spacer height={10} />
 							<Heading size="md">Markets Europe</Heading>
 							<Spacer height={2} />
-							<MarketOverview symbol={""} />
+							<MarketOverview symbols={ "DAX,^FCHI,^IBEX,PSI20.LS,^STOXX"} />
+							<MarketsTable />
 							<Spacer height={10} />
 							<Heading size="md">Stock Market News</Heading>
 							<Spacer height={2} />
