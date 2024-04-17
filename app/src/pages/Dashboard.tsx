@@ -17,6 +17,7 @@ import Watchlist from "../components/Watchlist";
 import tokens from "../services/tokens.service";
 import { Link as RouterLink } from "react-router-dom";
 import MarketsTable from "../components/MarketsTable";
+import StockTracker from "../components/StockTracker";
 
 export default function Dashboard() {
 	const isOnMobile = useBreakpointValue({ base: true, md: false });
@@ -50,11 +51,11 @@ export default function Dashboard() {
 					)}
 					{!isOnMobile && (
 						<>
+						    <StockTracker></StockTracker>
 							<Spacer height={10} />
 							<Heading size="md">Markets Europe</Heading>
 							<Spacer height={2} />
-							<MarketOverview symbols={ "DAX,^FCHI,^IBEX,PSI20.LS,^STOXX"} />
-							<MarketsTable />
+							<MarketOverview symbols={ "DAX"} />
 							<Spacer height={10} />
 							<Heading size="md">Stock Market News</Heading>
 							<Spacer height={2} />

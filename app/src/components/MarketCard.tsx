@@ -11,39 +11,42 @@ import {
   Text,
   Card
 } from '@chakra-ui/react';
-import { MarketEurope } from "./MarketEurope";
+import { MarketEuropeAdvanguard } from "./MarketEuropeAdvanguard";
 
 interface MarketCardProps {
-  MarketEurope: MarketEurope;
+  MarketEuropeAdvanguard: MarketEuropeAdvanguard;
 }
 
-const MarketCard: React.FC<MarketCardProps> = ({ MarketEurope }) => {
-  const { price, summaryDetail } = MarketEurope;
-  const {
-    regularMarketPrice,
-    regularMarketDayHigh,
-    regularMarketDayLow,
-    regularMarketChange,
-    regularMarketChangePercent,
-    regularMarketVolume,
-    currencySymbol
-  } = price;
+const MarketCard: React.FC<MarketCardProps> = ({ MarketEuropeAdvanguard }) => {
+  const { price, summaryDetail } = MarketEuropeAdvanguard;
+  const { open, high, low, close, volume } = price;
 
   return (
     <Card maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" p={4} m={2}>
       <VStack align="stretch">
-        <Heading size="md">{price.shortName}</Heading>
-        <Text fontSize="sm">{price.longName}</Text>
+        <Heading size="md">{summaryDetail.property1}</Heading>
+        <Text fontSize="sm">{summaryDetail.property2}</Text>
         <Stat>
-          <StatLabel>Current Price</StatLabel>
-          <StatNumber>{`${currencySymbol}${regularMarketPrice.toFixed(2)}`}</StatNumber>
-          <StatHelpText>
-            <StatArrow type={regularMarketChange > 0 ? 'increase' : 'decrease'} />
-            {`${regularMarketChange.toFixed(2)} (${(regularMarketChangePercent * 100).toFixed(2)}%)`}
-          </StatHelpText>
+          <StatLabel>Open</StatLabel>
+          <StatNumber>{open}</StatNumber>
+        </Stat>
+        <Stat>
+          <StatLabel>High</StatLabel>
+          <StatNumber>{high}</StatNumber>
+        </Stat>
+        <Stat>
+          <StatLabel>Low</StatLabel>
+          <StatNumber>{low}</StatNumber>
+        </Stat>
+        <Stat>
+          <StatLabel>Close</StatLabel>
+          <StatNumber>{close}</StatNumber>
+        </Stat>
+        <Stat>
+          <StatLabel>Volume</StatLabel>
+          <StatNumber>{volume}</StatNumber>
         </Stat>
       </VStack>
-      
     </Card>
   );
 };
